@@ -7,22 +7,23 @@ function Home() {
     const [page, setPage] = useState(null)
 
 
+
+
+    
     return (
         <div>
-            <Router>
+             <Map />
+            {/* <Router>
                 <h1>it is Home</h1>
             <Link to='/level1 '><button className='btn_start_game'  onClick={setPage => setPage('level1')}>Play</button> </Link>
             <Switch>
                     <Route exact path='/' render={() => console.log('home')} />
                     <Route exact path='/level1' render={() => console.log('in game')}  />
                 </Switch>
-
-{
-    page === 'level1' ? <Map />: null
-}
-            
-
-            </Router>
+                    {
+                        page === 'level1' ? <Map />: null
+                    }
+            </Router> */}
         </div>
     )
 }

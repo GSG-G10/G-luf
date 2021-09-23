@@ -7,7 +7,7 @@ font-family: cursive;
 
 
 body{
-/* background: url('https://images4.alphacoders.com/111/thumb-1920-1114903.jpg')  no-repeat center fixed; */
+background: url('https://images4.alphacoders.com/111/thumb-1920-1114903.jpg')  no-repeat center fixed;
 width: 100%;
 background-size: cover;
 }
@@ -97,6 +97,7 @@ stroke-width: 1px;
 
 .block{
 --hightTop: 500px;
+--timeSpeed: 0.5s;
 width: 40px;
 height: 30px;
 top: var(--hightTop);
@@ -104,7 +105,7 @@ position: absolute;
 display: flex;
 align-items: center;
 justify-content: space-between;
-animation: slide .5s infinite linear;
+animation: slide var(--timeSpeed) infinite linear;
 animation-delay: calc(0.1s * var(--i));
 animation-play-state: paused;
 }
