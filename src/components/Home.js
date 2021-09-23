@@ -7,8 +7,10 @@ function Home() {
 
     return (
         <div className='wrapper_home'> 
-            <h1>it is Home</h1>
-            <a href='/level1 '><button className='btn_start_game'>Play</button> </a>
+          <div className='wraper_h_2'>
+             <h1 className='title_home'>Let's Play Now</h1>
+            <a href='/level1 ' className='linke_to_game'><button className='btn_start_game'>Play</button> </a>
+          </div>
         </div>
     )
 }

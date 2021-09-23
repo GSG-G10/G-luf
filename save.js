@@ -16,7 +16,7 @@ function Level1() {
     const [moused, setMoused ] = useState(0)
     const [timeSpeed, setTimeSpeed ] = useState(2)
     const [isActive, setIsActive ] = useState('paused')
-    const [timers, setTimers ] = useState(30)
+    const [timers, setTimers ] = useState(10)
     const [scoreNew, setScoreNew ] = useState(0)
 
    
@@ -56,6 +56,7 @@ function Level1() {
         document.addEventListener("keydown", event => {
             if(event.key==="ArrowLeft"){
                 setScoreNew(scoreNew+1)
+                console.log('tttttttttttt,', scoreNew);
                 moveLeft();
             }
             if(event.key==="ArrowRight"){
@@ -99,12 +100,12 @@ function Level1() {
         })
 
 
-        if(popWin){
-            boxs.forEach(box=>{
-                box.style.animationPlayState = 'paused';
-            })
-        }
+        if( timers === 0){
+            playerWin()
+        } 
+  
 
+        
             function moveLeft(){
                 let left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
                 left -= 20;
@@ -118,6 +119,7 @@ function Level1() {
                 let left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
                 left += 20;
                 if(left<widthGame){
+                    // setMoused(left)
                     character.style.left = left + "px";
                 }
             }
@@ -125,6 +127,7 @@ function Level1() {
             if(scoreNew > 20 ){
                 playerLose()
             }
+            console.log(scoreNew);
         
             function playerLose(){
                 setPopLose(true)
@@ -142,43 +145,31 @@ function Level1() {
     
 
 useEffect(() => {
+    // startPlay ?  :  clearInterval(timeInter)
+//     let timeInter;
+//     if(startPlay){
+
+//    timeInter =   setInterval(() => {
+//             setTimers(Number(timers - 1) )
+//             console.log('timers: ', timers);
+//             if( timers === 0){
+//                     // playerWin()
+//                     console.log('====================================');
+//                     clearInterval(timeInter)
+//                 } 
+//         }, 1000)
+//     }
+
+
 
     return () => {
         setStartPlay(false)
         setScoreNew(scoreNew+1)
+        // setMoused(0)
+        // clearInterval(timeInter)
     }
 
 }, [scoreNew, startPlay])
-
-useEffect(() => {
-    let timeInter =   setInterval(() => {
-        setTimers(timers - 1)
-        console.log('timers: ', timers);
-        if( timers === 0 || timers < 0){
-            clearInterval(timeInter)
-            setPopWin(true)
-            setIsActive('paused')
-    document.querySelectorAll(".box").forEach(box=>{
-                box.style.animationPlayState = 'paused';
-            })
-
-        } 
-  
-  
-
-    }, 1000)
-
-    return () => {
-        clearInterval(timeInter)
-    }
-
-    
-
-})
-
-
-
-
 
 
         const startGameClick = () =>{
@@ -186,12 +177,17 @@ useEffect(() => {
             setPopStart(false)
         }
         
-        const autoLoadAgin = () =>{window.location.reload(false)}
+        const autoLoadAgin = () =>{
+            window.location.reload(false)
+
+        }
         
     return (
         <div >
 
-            {startPlay ===  false ? null : theGame()}
+{
+    startPlay ===  false ? null : theGame()
+}
 
         <div className={popStart ? 'pop_start_game': 'pop_start_game start'} >
             <span className="title_level">level 4</span>
