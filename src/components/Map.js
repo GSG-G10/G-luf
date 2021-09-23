@@ -12,16 +12,14 @@ function Level1() {
     const [popLose, setPopLose ] = useState(false)
     const [popWin, setPopWin ] = useState(false)
     const [myScore, setMyScore ] = useState(0)
-
-
     const [startPlay, setStartPlay ] = useState(false)
     const [moused, setMoused ] = useState(0)
     const [timeSpeed, setTimeSpeed ] = useState(2)
     const [isActive, setIsActive ] = useState('paused')
     const [timers, setTimers ] = useState(10)
+    const [scoreNew, setScoreNew ] = useState(0)
 
    
-
 
     const theGame = () => {
 
@@ -57,6 +55,8 @@ function Level1() {
         
         document.addEventListener("keydown", event => {
             if(event.key==="ArrowLeft"){
+                setScoreNew(scoreNew+1)
+                console.log('tttttttttttt,', scoreNew);
                 moveLeft();
             }
             if(event.key==="ArrowRight"){
@@ -75,19 +75,7 @@ function Level1() {
         })
         
 
- 
 
-
-        let timeInter =   setInterval(() => {
- 
-            setTimers(Number(timers - 1) )
-            console.log(timers);
-
-                if( timers === 0){
-                    playerWin()
-                    clearInterval(timeInter)
-                } 
-        }, 1000);
 
 
         boxs.forEach(box=>{
@@ -112,6 +100,11 @@ function Level1() {
         })
 
 
+        if( timers === 0){
+            playerWin()
+        } 
+  
+
         
             function moveLeft(){
                 let left = parseInt(window.getComputedStyle(character).getPropertyValue("left"));
@@ -131,6 +124,10 @@ function Level1() {
                 }
             }
         
+            if(scoreNew > 20 ){
+                playerLose()
+            }
+            console.log(scoreNew);
         
             function playerLose(){
                 setPopLose(true)
@@ -163,13 +160,17 @@ useEffect(() => {
 //         }, 1000)
 //     }
 
+
+
     return () => {
         setStartPlay(false)
+        setScoreNew(scoreNew+1)
         // setMoused(0)
         // clearInterval(timeInter)
     }
 
-}, [timers, startPlay])
+}, [scoreNew, startPlay])
+
 
         const startGameClick = () =>{
             setStartPlay(true)

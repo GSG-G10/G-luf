@@ -4,26 +4,11 @@ import {BrowserRouter as Router, Route, Link, Switch, Redirect} from 'react-rout
 
 function Home() {
 
-    const [page, setPage] = useState(null)
 
-
-
-
-    
     return (
-        <div>
-             <Map />
-            {/* <Router>
-                <h1>it is Home</h1>
-            <Link to='/level1 '><button className='btn_start_game'  onClick={setPage => setPage('level1')}>Play</button> </Link>
-            <Switch>
-                    <Route exact path='/' render={() => console.log('home')} />
-                    <Route exact path='/level1' render={() => console.log('in game')}  />
-                </Switch>
-                    {
-                        page === 'level1' ? <Map />: null
-                    }
-            </Router> */}
+        <div className='wrapper_home'> 
+            <h1>it is Home</h1>
+            <a href='/level1 '><button className='btn_start_game'>Play</button> </a>
         </div>
     )
 }
